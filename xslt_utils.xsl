@@ -49,9 +49,10 @@
 	<func:function name="utils:ends-with">
 		<xsl:param name="str1" select="''"/>
 		<xsl:param name="str2" select="''"/>
+		<xsl:param name="delta" select="1"/>
 
 		<func:result>
-			<xsl:value-of select="$str2 = substring($str1, string-length($str1)- string-length($str2) +1)"/>
+			<xsl:value-of select="$str2 = substring($str1, string-length($str1)- string-length($str2) + $delta)"/>
 		</func:result>
 	</func:function>
 
