@@ -36,7 +36,7 @@
 					<xsl:copy-of select="exsl:node-set($then) | exsl:node-set($then)/text()"/>
 				</xsl:when>
 				<xsl:otherwise>
-					<xsl:value-of select="exsl:node-set($else) | exsl:node-set($else)/text()"/>
+					<xsl:copy-of select="exsl:node-set($else) | exsl:node-set($else)/text()"/>
 				</xsl:otherwise>
 			</xsl:choose>
 		</func:result>
