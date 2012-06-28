@@ -16,7 +16,7 @@
 
 		<func:result>
 			<xsl:if test="$if">
-				<xsl:copy-of select="exsl:node-set($then) | exsl:node-set($then)/text()"/>
+				<xsl:copy-of select="exsl:node-set($then)"/>
 			</xsl:if>
 		</func:result>
 	</func:function>
@@ -33,10 +33,10 @@
 		<func:result>
 			<xsl:choose>
 				<xsl:when test="$if">
-					<xsl:copy-of select="exsl:node-set($then) | exsl:node-set($then)/text()"/>
+					<xsl:copy-of select="exsl:node-set($then)"/>
 				</xsl:when>
 				<xsl:otherwise>
-					<xsl:copy-of select="exsl:node-set($else) | exsl:node-set($else)/text()"/>
+					<xsl:copy-of select="exsl:node-set($else)"/>
 				</xsl:otherwise>
 			</xsl:choose>
 		</func:result>
