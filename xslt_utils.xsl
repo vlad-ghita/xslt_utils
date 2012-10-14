@@ -16,7 +16,7 @@
 
 		<func:result>
 			<xsl:if test="$if">
-				<xsl:copy-of select="exsl:node-set($then)"/>
+				<xsl:apply-templates select="exsl:node-set($then)" mode="html"/>
 			</xsl:if>
 		</func:result>
 	</func:function>
@@ -33,10 +33,10 @@
 		<func:result>
 			<xsl:choose>
 				<xsl:when test="$if">
-					<xsl:copy-of select="exsl:node-set($then)"/>
+					<xsl:apply-templates select="exsl:node-set($then)" mode="html"/>
 				</xsl:when>
 				<xsl:otherwise>
-					<xsl:copy-of select="exsl:node-set($else)"/>
+					<xsl:apply-templates select="exsl:node-set($else)" mode="html"/>
 				</xsl:otherwise>
 			</xsl:choose>
 		</func:result>
@@ -49,10 +49,27 @@
 	<func:function name="utils:ends-with">
 		<xsl:param name="str1" select="''"/>
 		<xsl:param name="str2" select="''"/>
-		<xsl:param name="delta" select="1"/>
+
+		<xsl:variable name="end" select="substring($str1, string-length($str1) - string-length($str2) + 1)"/>
 
 		<func:result>
-			<xsl:value-of select="$str2 = substring($str1, string-length($str1)- string-length($str2) + $delta)"/>
+			<xsl:value-of select="utils:ifte($str2 = $end, 'yes', 'no')"/>
+		</func:result>
+	</func:function>
+
+
+
+
+	<!-- min() for XSLT 1.0 -->
+	<func:function name="utils:min">
+		<xsl:param name="n1" select="'0'"/>
+		<xsl:param name="n2" select="'0'"/>
+
+		<xsl:variable name="p1" select="number($n1)"/>
+		<xsl:variable name="p2" select="number($n2)"/>
+
+		<func:result>
+			<xsl:value-of select="utils:ifte($p1 > $p2, $p2, $p1)"/>
 		</func:result>
 	</func:function>
 
